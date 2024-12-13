@@ -17,6 +17,8 @@ import Logo from "./Logo";
 import MUIBadge from "./MUI/MUIBadge";
 import SearchBar from "./SearchBar";
 import SidebarMobile from "./Sidebar/SidebarMobile";
+import SandboxLogo from "./SandboxLogo";
+import SandboxButton from "./SandboxButton";
 
 const Header = () => {
   const { cartItemCount } = useGlobalContext();
@@ -24,6 +26,10 @@ const Header = () => {
   const location = useLocation();
   const hamburgerRef = useRef<SVGSVGElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const isSandboxMode = localStorage.getItem('isSandboxMode') ?? 'false'
+  
+  console.log('anish header isSandboxMode', isSandboxMode);
   return (
     <Flex
       as="header"
@@ -37,6 +43,13 @@ const Header = () => {
       bg="white"
       boxShadow="base"
     >
+      {isSandboxMode.toLowerCase() === "true" && (
+        <Flex
+          backgroundColor={'gold'}
+        >
+          SANDBOX MODE
+        </Flex>
+      )}
       <Flex
         height="65px"
         align="center"
@@ -53,12 +66,17 @@ const Header = () => {
             mr={2}
             cursor="pointer"
             ref={hamburgerRef}
-            onClick={onOpen}
-          />
+            onClick={onOpen} />
           <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>
-            <Logo />
+            {isSandboxMode.toLowerCase() === "true" && (
+              <SandboxLogo />
+            )}
+            {!(isSandboxMode.toLowerCase() === "true") && (
+              <Logo />
+            )}
           </Link>
         </Flex>
+        <SandboxButton />
         <SearchBar display={{ base: "none", sm: "block" }} />
         <Flex justify="space-between" align="center">
           <HStack spacing={{ base: 3, sm: 5 }}>
@@ -88,11 +106,9 @@ const Header = () => {
               </Button>
             </Link>
             <Box
-              mr={
-                location.pathname === "/login" || location.pathname === "/register"
-                  ? 2
-                  : undefined
-              }
+              mr={location.pathname === "/login" || location.pathname === "/register"
+                ? 2
+                : undefined}
             >
               <Link as={RouterLink} to="/cart" _hover={{ textDecoration: "none" }}>
                 <MUIBadge badgeContent={cartItemCount}>
@@ -103,8 +119,7 @@ const Header = () => {
                     color="gray.400"
                     cursor="pointer"
                     _hover={{ color: "appBlue.300" }}
-                    _active={{ color: "appBlue.400" }}
-                  />
+                    _active={{ color: "appBlue.400" }} />
                 </MUIBadge>
               </Link>
             </Box>
@@ -115,16 +130,12 @@ const Header = () => {
             <Route path="/register" element={null} />
             <Route
               path="*"
-              element={
-                <Avatar
-                  ml={cartItemCount > 0 ? { base: 5, sm: 7 } : { base: 3, sm: 5 }}
-                  width={{ base: 7, sm: 8 }}
-                  height={{ base: 7, sm: 8 }}
-                  src="https://bit.ly/broken-link"
-                  cursor="pointer"
-                />
-              }
-            />
+              element={<Avatar
+                ml={cartItemCount > 0 ? { base: 5, sm: 7 } : { base: 3, sm: 5 }}
+                width={{ base: 7, sm: 8 }}
+                height={{ base: 7, sm: 8 }}
+                src="https://bit.ly/broken-link"
+                cursor="pointer" />} />
           </Routes>
         </Flex>
       </Flex>

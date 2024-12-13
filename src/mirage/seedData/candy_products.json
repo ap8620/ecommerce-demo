@@ -1,0 +1,242 @@
+[
+    {
+        "id": 1,
+        "title": "Bubblegum Bliss Berries",
+        "price": 3.99,
+        "description": "Juicy bubblegum-flavored candies shaped like berries for a blissful treat.",
+        "category": "Fruity",
+        "image": "https://tse4.mm.bing.net/th?id=OIG3.Gw6VBPwf2JLq2dLo2JXF&pid=ImgGn",
+        "rating": {
+            "rate": 4.5,
+            "count": 120
+        }
+    },
+    {
+        "id": 2,
+        "title": "Gummy Galaxy Gems",
+        "price": 4.99,
+        "description": "Sparkling gummy candies that taste out of this world.",
+        "category": "Gummy",
+        "image": "https://tse3.mm.bing.net/th?id=OIG1.56P7.oTNY68EVsa0C8XH&pid=ImgGn",
+        "rating": {
+            "rate": 4.7,
+            "count": 95
+        }
+    },
+    {
+        "id": 3,
+        "title": "Licorice Lava Logs",
+        "price": 2.99,
+        "description": "Spicy licorice logs with a molten center.",
+        "category": "Licorice",
+        "image": "https://tse3.mm.bing.net/th?id=OIG1.pvZbkzNhtIJKgxsJrf.e&pid=ImgGn",
+        "rating": {
+            "rate": 4.1,
+            "count": 85
+        }
+    },
+    {
+        "id": 4,
+        "title": "Marshmallow Magic Mints",
+        "price": 3.49,
+        "description": "Fluffy marshmallows with a hint of mint magic.",
+        "category": "Marshmallow",
+        "image": "https://tse2.mm.bing.net/th?id=OIG1.3AMQMgPD82L2NqKbPmC7&pid=ImgGn",
+        "rating": {
+            "rate": 4.3,
+            "count": 60
+        }
+    },
+    {
+        "id": 5,
+        "title": "Cocoa Cloud Crunchies",
+        "price": 3.99,
+        "description": "Crunchy cocoa bites that melt like clouds in your mouth.",
+        "category": "Chocolate",
+        "image": "https://tse2.mm.bing.net/th?id=OIG3.KQl49fVzUOrP.DsxMNE7&pid=ImgGn",
+        "rating": {
+            "rate": 4.8,
+            "count": 150
+        }
+    },
+    {
+        "id": 6,
+        "title": "Pixie Pop Rocks",
+        "price": 2.99,
+        "description": "Explosive candies with a magical pixie twist.",
+        "category": "Pop Rocks",
+        "image": "https://tse4.mm.bing.net/th?id=OIG1.pZzMgIdYvqyvcpC4OZ0d&pid=ImgGn",
+        "rating": {
+            "rate": 4.4,
+            "count": 110
+        }
+    },
+    {
+        "id": 7,
+        "title": "Rainbow Ribbon Twists",
+        "price": 3.79,
+        "description": "Colorful twisted ribbons of fruity goodness.",
+        "category": "Fruity",
+        "image": "https://tse3.mm.bing.net/th?id=OIG3.7SyZzAje9QL3Le_d98He&pid=ImgGn",
+        "rating": {
+            "rate": 4.6,
+            "count": 130
+        }
+    },
+    {
+        "id": 8,
+        "title": "Zesty Zinger Drops",
+        "price": 3.29,
+        "description": "Tangy drops that pack a zesty punch.",
+        "category": "Sour",
+        "image": "https://tse1.mm.bing.net/th?id=OIG1.dnQ2HI6Uprfq3e12rAbt&pid=ImgGn",
+        "rating": {
+            "rate": 4.2,
+            "count": 75
+        }
+    },
+    {
+        "id": 9,
+        "title": "Whimsical Whirl Wafers",
+        "price": 4.49,
+        "description": "Delicate wafers with a whimsical swirl of flavors.",
+        "category": "Wafer",
+        "image": "https://tse1.mm.bing.net/th?id=OIG3.4YL0Vg13OaVgDUcsTK3.&pid=ImgGn",
+        "rating": {
+            "rate": 4.7,
+            "count": 90
+        }
+    },
+    {
+        "id": 10,
+        "title": "Luminous Lollipop Lights",
+        "price": 3.59,
+        "description": "Glowing lollipops that light up your taste buds.",
+        "category": "Lollipop",
+        "image": "https://tse2.mm.bing.net/th?id=OIG3.nENxF2jChkJnUTHZwIgJ&pid=ImgGn",
+        "rating": {
+            "rate": 4.5,
+            "count": 100
+        }
+    },
+    {
+        "id": 11,
+        "title": "Caramel Cloud Clusters",
+        "price": 3.89,
+        "description": "Soft caramel clusters that melt like clouds.",
+        "category": "Caramel",
+        "image": "https://tse2.mm.bing.net/th?id=OIG1.yfezfNPuy8bWhqLGtZQm&pid=ImgGn",
+        "rating": {
+            "rate": 4.8,
+            "count": 140
+        }
+    },
+    {
+        "id": 12,
+        "title": "Frosted Fudge Flowers",
+        "price": 4.29,
+        "description": "Decadent fudge shaped like frosted flowers.",
+        "category": "Fudge",
+        "image": "https://tse2.mm.bing.net/th?id=OIG4.7MEH2DPlvpSED3c5JVLN&pid=ImgGn",
+        "rating": {
+            "rate": 4.6,
+            "count": 110
+        }
+    },
+    {
+        "id": 13,
+        "title": "Glittery Gummy Goblins",
+        "price": 3.49,
+        "description": "Glittery gummy candies with a goblin twist.",
+        "category": "Gummy",
+        "image": "https://tse2.mm.bing.net/th?id=OIG3.AXbpSlzV54aGaAzabOK_&pid=ImgGn",
+        "rating": {
+            "rate": 4.4,
+            "count": 85
+        }
+    },
+    {
+        "id": 14,
+        "title": "Mystic Mint Marbles",
+        "price": 3.99,
+        "description": "Mint-flavored marbles with a mystic charm.",
+        "category": "Mint",
+        "image": "https://tse3.mm.bing.net/th?id=OIG1.2znqQXeQytQloP1O4wS_&pid=ImgGn",
+        "rating": {
+            "rate": 4.5,
+            "count": 95
+        }
+    },
+    {
+        "id": 15,
+        "title": "Twinkling Taffy Tangles",
+        "price": 2.99,
+        "description": "Twinkling taffy with tangled flavors.",
+        "category": "Taffy",
+        "image": "https://tse3.mm.bing.net/th?id=OIG4.iT7BWXiDB8TdvbuUVeOa&pid=ImgGn",
+        "rating": {
+            "rate": 4.3,
+            "count": 70
+        }
+    },
+    {
+        "id": 16,
+        "title": "Velvet Vanilla Vortex",
+        "price": 3.79,
+        "description": "Smooth vanilla candies in a swirling vortex.",
+        "category": "Vanilla",
+        "image": "https://tse4.mm.bing.net/th?id=OIG3.QaL1c0xGmwXb8U9Y9CYj&pid=ImgGn",
+        "rating": {
+            "rate": 4.7,
+            "count": 90
+        }
+    },
+    {
+        "id": 17,
+        "title": "Toffee Tornado Twists",
+        "price": 4.19,
+        "description": "Twisted toffee that sweeps you off your feet.",
+        "category": "Toffee",
+        "image": "https://tse2.mm.bing.net/th?id=OIG1.cixUvRAiLqB8rviWpGXV&pid=ImgGn",
+        "rating": {
+            "rate": 4.5,
+            "count": 80
+        }
+    },
+    {
+        "id": 18,
+        "title": "Plasma Pop Puffs",
+        "price": 2.99,
+        "description": "Puff candies with a plasma pop.",
+        "category": "Pop",
+        "image": "https://tse2.mm.bing.net/th?id=OIG3.l85TneN8_pim_LfgG4jE&pid=ImgGn",
+        "rating": {
+            "rate": 4.4,
+            "count": 60
+        }
+    },
+    {
+        "id": 19,
+        "title": "Sparkle Swirl Sours",
+        "price": 3.69,
+        "description": "Sour candies with a sparkling swirl.",
+        "category": "Sour",
+        "image": "https://tse3.mm.bing.net/th?id=OIG2.IPIU3Es8ZYuG18cMyS8o&pid=ImgGn",
+        "rating": {
+            "rate": 4.6,
+            "count": 110
+        }
+    },
+    {
+        "id": 20,
+        "title": "Eclipse Eclair Echoes",
+        "price": 3.89,
+        "description": "Eclairs with a hidden echo of flavors.",
+        "category": "Eclair",
+        "image": "https://tse4.mm.bing.net/th?id=OIG2.wuzYVW1mnBEigxR3SwND&pid=ImgGn",
+        "rating": {
+            "rate": 4.7,
+            "count": 100
+        }
+    }
+]

@@ -1,6 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { FC, ReactNode, createContext, useEffect, useState } from "react";
-import seed from "./products.json";
+// import seed from "./products.json";
 
 type ContextType = {
   products: ProductType[];
@@ -55,13 +55,22 @@ export const Provider: FC<Props> = ({ children }) => {
 
   // Fetch products
   const fetchProducts = async () => {
-    // const res = await fetch("https://fakestoreapi.com/products");
-    const products: ProductType[] = seed;
-    setProducts(products);
-    setIsLoading(false);
+    const res = await fetch("https://fakestoreapi.com/products");
+    let data = [];
+    res.json().then(x => {
+      data = x;
+      console.log('anish fetching from fakestore api', data);
+      //console.log('anish fetching from fakestore api', data);
+      const products: ProductType[] = data;
+      console.log('anish globalstate setting products data 67', products);
+      setProducts(products);
+      setIsLoading(false);
+    });
   };
   useEffect(() => {
+    console.log('anish inside globalstate.tsx');
     fetchProducts();
+    console.log('anish inside globalstate.tsx useeffect after fetchproducts 74');
   }, []);
 
   useEffect(() => {
