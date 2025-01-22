@@ -16,7 +16,7 @@ import {
 import { BiTrash } from "react-icons/bi";
 import { BsHeart as HeartIcon, BsHeartFill as HeartIconFill } from "react-icons/bs";
 import { Link as RouterLink } from "react-router-dom";
-import { ProductInCart } from "../../context/GlobalState";
+import { ProductInCart } from "../../types/types";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import MUISkeleton from "../MUI/MUISkeleton";
 import MotionBox from "../MotionBox";

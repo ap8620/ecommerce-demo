@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Container from "./components/Container";
 import ProgressLine from "./components/Loading/ProgressLine";
 import { Provider } from "./context/GlobalState";
+import { InventoryContextProvider } from "./context/inventoryContext";
 import Saved from "./pages/Saved";
 
 const Home = loadable(() => import("./pages/Home"), {
@@ -23,6 +24,9 @@ const Login = loadable(() => import("./pages/Login"), {
 const Register = loadable(() => import("./pages/Register"), {
   fallback: <ProgressLine />,
 });
+const Inventory = loadable(() => import("./pages/Inventory"), {
+  fallback: <ProgressLine />,
+});
 
 const App = () => {
   return (
@@ -35,6 +39,7 @@ const App = () => {
             <Route path="/saved" element={<Saved />} />
             <Route path="/search/:name" element={<SearchResults />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/inventory" element={<Inventory />} />
           </Routes>
         </Container>
         <Routes>

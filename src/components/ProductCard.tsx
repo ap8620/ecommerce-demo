@@ -13,7 +13,7 @@ import {
 import { BsHeart as HeartIcon, BsHeartFill as HeartIconFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
-import { ProductType } from "../context/GlobalState";
+import { ProductType } from "../types/types";
 import { useGlobalContext } from "../context/useGlobalContext";
 import MUIRating from "./MUI/MUIRating";
 import MUISkeleton from "./MUI/MUISkeleton";

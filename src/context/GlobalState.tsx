@@ -1,5 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { FC, ReactNode, createContext, useEffect, useState } from "react";
+import { ProductType } from "../types/types";
 // import seed from "./products.json";
 
 type ContextType = {
@@ -14,29 +15,11 @@ type ContextType = {
   incrementQty: (id: number | string) => void;
   toggleSaved: (id: number | string) => void;
   fetchProducts: () => Promise<void>;
+  addProduct: (product: Omit<ProductType, "id">) => void;
+  updateProduct: (id: number, product: Partial<ProductType>) => void;
+  deleteProduct: (id: number) => void;
   isLoading: boolean;
 };
-
-type Product = {
-  id: string | number;
-  title: string;
-  description: string;
-  price: string | number;
-  image: string;
-  category: string;
-  isSaved?: boolean;
-};
-
-export type ProductInCart = Product & {
-  inCart: true;
-  quantity: number | string;
-};
-
-type ProductNotInCart = Product & {
-  inCart?: false;
-};
-
-export type ProductType = ProductInCart | ProductNotInCart;
 
 interface Props {
   children: ReactNode;
@@ -154,6 +137,24 @@ export const Provider: FC<Props> = ({ children }) => {
     );
   };
 
+  const addProduct = (product: Omit<Product, "id">) => {
+    const newProduct = {
+      ...product,
+      id: Math.max(...products.map(p => p.id)) + 1,
+    };
+    setProducts([...products, newProduct]);
+  };
+
+  const updateProduct = (id: number, updatedProduct: Partial<Product>) => {
+    setProducts(products.map(product => 
+      product.id === id ? { ...product, ...updatedProduct } : product
+    ));
+  };
+
+  const deleteProduct = (id: number) => {
+    setProducts(products.filter(product => product.id !== id));
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -168,6 +169,9 @@ export const Provider: FC<Props> = ({ children }) => {
         decrementQty,
         toggleSaved,
         fetchProducts,
+        addProduct,
+        updateProduct,
+        deleteProduct,
         isLoading,
       }}
     >
