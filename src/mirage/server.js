@@ -50,7 +50,8 @@ export function makeServer({ environment = "test" } = {}) {
 
     routes() {
     //   this.namespace = "api";
-      this.urlPrefix = "https://fakestoreapi.com";
+      // this.urlPrefix = "https://fakestoreapi.com";
+      this.urlPrefix = "https://localhost:5001";
 
       this.get("/products", (schema) => {
       console.log('first product', schema.products.first());

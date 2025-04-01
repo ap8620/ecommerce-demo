@@ -38,7 +38,7 @@ export const Provider: FC<Props> = ({ children }) => {
 
   // Fetch products
   const fetchProducts = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
+    const res = await fetch("https://localhost:5001/products");
     let data = [];
     res.json().then(x => {
       data = x;
