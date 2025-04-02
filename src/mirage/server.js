@@ -38,7 +38,7 @@ export function makeServer({ environment = "test" } = {}) {
         // const localStorageDB = {
         //   articles: server.db.articles
         // };
-        // localStorage.setItem('sandboxData', JSON.stringify(seedData));
+        localStorage.setItem('sandboxData', JSON.stringify(seedData));
       } else {
         server.db.loadData(JSON.parse(sandboxData));
       }
@@ -56,6 +56,35 @@ export function makeServer({ environment = "test" } = {}) {
       this.get("/products", (schema) => {
       console.log('first product', schema.products.first());
       return schema.products.all().models;
+      });
+
+      this.post("/products", (schema, request) => {
+        const attrs = JSON.parse(request.requestBody);
+        const product = schema.products.create(attrs);
+        console.log('anish mirage product 64', product);
+        console.log('anish mirage schema products', schema.products.all().models);
+        console.log('anish mirage db products', server.db.products);
+        localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
+        return product;
+      });
+
+      this.put("/products/:id", (schema, request) => {
+        const id = request.params.id;
+        const attrs = JSON.parse(request.requestBody);
+
+        // find the existing product by id
+        let product = schema.products.find(id);
+
+        if (!product) {
+          return new Response(404, {}, { errors: ["Product not found"] });
+        }
+
+        // Update the product with new attributes
+        product.update(attrs);
+
+        console.log('anish mirage updated product', product);
+        localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
+        return product;
       });
 
     //   this.get("/tags", (schema) => {

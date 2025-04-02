@@ -11,6 +11,7 @@ import {
   Input,
   NumberInput,
   NumberInputField,
+  Select,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/useGlobalContext";
@@ -26,6 +27,7 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
   const { addProduct, updateProduct } = useGlobalContext();
   const [formData, setFormData] = useState({
     title: "",
+    category: "",
     price: "",
     // stock: "",
     image: "",
@@ -37,6 +39,7 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
       console.log('inside modal product', product);
       setFormData({
         title: product.title,
+        category: product.category,
         price: product.price.toString(),
         // stock: product.stock.toString(),
         image: product.image,
@@ -45,6 +48,7 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
     } else {
       setFormData({
         title: "",
+        category: "",
         price: "",
         // stock: "",
         image: "",
@@ -61,7 +65,7 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
     };
 
     if (product) {
-      updateProduct(product.id, productData);
+      updateProduct(product.id, { id: product.id, ...productData });
     } else {
       addProduct(productData);
     }
@@ -83,6 +87,19 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             />
+          </FormControl>
+          <FormControl mb={3}>
+            <FormLabel>Category</FormLabel>
+            <Select
+              value={formData.category}
+              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+              placeholder="Select category"
+            >
+              <option value="men clothing">Men's Clothing</option>
+              <option value="women clothing">Women's Clothing</option>
+              <option value="jewelery">Jewelery</option>
+              <option value="electronics">Electronics</option>
+            </Select>
           </FormControl>
           <FormControl mb={3}>
             <FormLabel>Price</FormLabel>

@@ -15,9 +15,9 @@ type ContextType = {
   incrementQty: (id: number | string) => void;
   toggleSaved: (id: number | string) => void;
   fetchProducts: () => Promise<void>;
-  addProduct: (product: Omit<ProductType, "id">) => void;
-  updateProduct: (id: number, product: Partial<ProductType>) => void;
-  deleteProduct: (id: number) => void;
+  addProduct: (product: Omit<ProductType, "id">) => Promise<void>;
+  updateProduct: (id: number, product: Partial<ProductType>) => Promise<void>;
+  deleteProduct: (id: number) => Promise<void>;
   isLoading: boolean;
 };
 
@@ -137,22 +137,105 @@ export const Provider: FC<Props> = ({ children }) => {
     );
   };
 
-  const addProduct = (product: Omit<Product, "id">) => {
-    const newProduct = {
-      ...product,
-      id: Math.max(...products.map(p => p.id)) + 1,
-    };
-    setProducts([...products, newProduct]);
+  const addProduct = async (product: Omit<ProductType, "id">) => {
+    try {
+      const response = await fetch('https://localhost:5001/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create product');
+      }
+
+      const newProduct = await response.json();
+      setProducts([...products, newProduct]);
+
+      toast({
+        title: "Product successfully created",
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.log('error creating product', error);
+      toast({
+        title: "Error creating product",
+        description: error instanceof Error ? error.message : "Unknown error occurred",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
   };
 
-  const updateProduct = (id: number, updatedProduct: Partial<Product>) => {
-    setProducts(products.map(product => 
-      product.id === id ? { ...product, ...updatedProduct } : product
-    ));
+  const updateProduct = async (id: number, updatedProduct: Partial<ProductType>) => {
+    try {
+      const response = await fetch(`https://localhost:5001/products/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProduct)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update product');
+      }
+
+      const updatedProductData = await response.json();
+      setProducts(products.map(product => 
+        product.id === id ? { ...product, ...updatedProductData } : product
+      ));
+
+      toast({
+        title: "Product successfully updated",
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.log('error updating product', error);
+      toast({
+        title: "Error updating product",
+        description: error instanceof Error ? error.message : "Unknown error occurred",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
   };
 
-  const deleteProduct = (id: number) => {
-    setProducts(products.filter(product => product.id !== id));
+  const deleteProduct = async (id: number) => {
+    try {
+      const response = await fetch(`https://localhost:5001/products/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete product');
+      }
+
+      setProducts(products.filter(product => product.id !== id));
+
+      toast({
+        title: "Product successfully deleted",
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: "Error deleting product",
+        description: error instanceof Error ? error.message : "Unknown error occurred",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
