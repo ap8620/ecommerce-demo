@@ -9,12 +9,14 @@ import "focus-visible/dist/focus-visible";
 import "lazysizes";
 // import a plugin
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
-import { makeServer } from "./mirage/server";
+import { makeServer } from "./mirage/server_basic";
 
-const isSandboxMode = localStorage.getItem('isSandboxMode') ?? 'false'
-if (isSandboxMode.toLowerCase() === "true") {
-    makeServer({ environment: "development" });
-}
+// const isSandboxMode = localStorage.getItem('isSandboxMode') ?? 'false'
+// if (isSandboxMode.toLowerCase() === "true") {
+//     makeServer({ environment: "development" });
+// }
+
+makeServer({ environment: "development" });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>

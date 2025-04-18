@@ -17,8 +17,6 @@ import Logo from "./Logo";
 import MUIBadge from "./MUI/MUIBadge";
 import SearchBar from "./SearchBar";
 import SidebarMobile from "./Sidebar/SidebarMobile";
-import SandboxLogo from "./SandboxLogo";
-import SandboxButton from "./SandboxButton";
 
 const Header = () => {
   const { cartItemCount } = useGlobalContext();
@@ -26,10 +24,7 @@ const Header = () => {
   const location = useLocation();
   const hamburgerRef = useRef<SVGSVGElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const isSandboxMode = localStorage.getItem('isSandboxMode') ?? 'false'
   
-  console.log('anish header isSandboxMode', isSandboxMode);
   return (
     <Flex
       as="header"
@@ -43,13 +38,6 @@ const Header = () => {
       bg="white"
       boxShadow="base"
     >
-      {isSandboxMode.toLowerCase() === "true" && (
-        <Flex
-          backgroundColor={'gold'}
-        >
-          SANDBOX MODE
-        </Flex>
-      )}
       <Flex
         height="65px"
         align="center"
@@ -68,15 +56,9 @@ const Header = () => {
             ref={hamburgerRef}
             onClick={onOpen} />
           <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>
-            {isSandboxMode.toLowerCase() === "true" && (
-              <SandboxLogo />
-            )}
-            {!(isSandboxMode.toLowerCase() === "true") && (
               <Logo />
-            )}
           </Link>
         </Flex>
-        <SandboxButton />
         <SearchBar display={{ base: "none", sm: "block" }} />
         <Flex justify="space-between" align="center">
           <HStack spacing={{ base: 3, sm: 5 }}>

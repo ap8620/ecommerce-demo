@@ -2,7 +2,6 @@
 
 import { createServer, Factory, Model, Response, RestSerializer } from "miragejs";
 import { faker } from '@faker-js/faker';
-import products from "./seedData/candy_products.json";
 
 console.log('serverBasic seedData');
 
@@ -12,10 +11,6 @@ export function makeServer({ environment = "test" } = {}) {
     
     models: {
       product: Model.extend(),
-    },
-
-    fixtures: {
-      products: products
     },
 
     factories: {
@@ -43,7 +38,6 @@ export function makeServer({ environment = "test" } = {}) {
 
 
     seeds(server) {
-      // server.loadFixtures();
       server.createList('product', 20);
     },
 
@@ -52,7 +46,6 @@ export function makeServer({ environment = "test" } = {}) {
     },
 
     routes() {
-    //   this.namespace = "api";
       this.urlPrefix = "https://localhost:5001";
 
       this.get("/products", (schema) => {
@@ -63,10 +56,10 @@ export function makeServer({ environment = "test" } = {}) {
       this.post("/products", (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const product = schema.products.create(attrs);
-        console.log('anish mirage product 64', product);
-        console.log('anish mirage schema products', schema.products.all().models);
-        console.log('anish mirage db products', server.db.products);
-        localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
+        // console.log('anish mirage product 64', product);
+        // console.log('anish mirage schema products', schema.products.all().models);
+        // console.log('anish mirage db products', server.db.products);
+        // localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         // GOTCHA: return .attrs to return only the attributes and not have product as a key in the response
         return product.attrs;
       });
@@ -85,8 +78,8 @@ export function makeServer({ environment = "test" } = {}) {
         // Update the product with new attributes
         product.update(attrs);
 
-        console.log('anish mirage updated product', product);
-        localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
+        // console.log('anish mirage updated product', product);
+        // localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         // GOTCHA: return .attrs to return only the attributes and not have product as a key in the response
         return product.attrs;
       });
@@ -104,14 +97,14 @@ export function makeServer({ environment = "test" } = {}) {
         // Destroy the product
         product.destroy();
 
-        console.log('anish mirage deleted product', id);
-        localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
+        // console.log('anish mirage deleted product', id);
+        // localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         return new Response(204);
       });
     },
   })
 
-  console.log('mirage db', server.db);
+  // console.log('mirage db', server.db);
 
   return server;
 }
