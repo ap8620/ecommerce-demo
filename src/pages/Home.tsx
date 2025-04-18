@@ -10,7 +10,7 @@ import { searchTags } from "../mockDB/db";
 const Home = () => {
   const { products, isLoading } = useGlobalContext();
   const navigate = useNavigate();
-
+  
   return (
     <>
       <HStack justifyContent="flex-start" px={3} mb={5}>

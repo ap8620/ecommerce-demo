@@ -1,36 +1,50 @@
 /* eslint-disable no-console */
-// src/server.js
-import { createServer, Model, Response, RestSerializer } from "miragejs";
+
+import { createServer, Factory, Model, Response, RestSerializer } from "miragejs";
+import { faker } from '@faker-js/faker';
 import products from "./seedData/candy_products.json";
-// import { uniq } from "ramda";
-// import tags from "./seedData/tags.json";
 
-
-console.log('seedData');
+console.log('serverBasic seedData');
 
 export function makeServer({ environment = "test" } = {}) {
   let server = createServer({
     environment,
-
+    
     models: {
       product: Model.extend(),
     },
 
-    seeds(server) {
-      const sandboxData = localStorage.getItem('sandboxData');
-      console.log('anish sandBox data', sandboxData);
-      if (!sandboxData) {
-        console.log('anish creating sandboxData');
-        // If no sandbox data in localStorage, load the initial seed data
-        const seedData = {
-          products: products,
-        };
+    fixtures: {
+      products: products
+    },
 
-        server.db.loadData(seedData);
-        localStorage.setItem('sandboxData', JSON.stringify(seedData));
-      } else {
-        server.db.loadData(JSON.parse(sandboxData));
-      }
+    factories: {
+      product: Factory.extend({ 
+        id(i) {
+          return i + 1;
+        },
+        title() {
+          return faker.commerce.productName();
+        },
+        price() {
+          return faker.commerce.price();
+        },
+        description() {
+          return faker.commerce.productDescription();
+        },
+        category() {
+          return faker.commerce.department();
+        },
+        image() {
+          return faker.image.url();
+        },
+      }),
+    },
+
+
+    seeds(server) {
+      // server.loadFixtures();
+      server.createList('product', 20);
     },
 
     serializers: {
@@ -39,7 +53,6 @@ export function makeServer({ environment = "test" } = {}) {
 
     routes() {
     //   this.namespace = "api";
-      // this.urlPrefix = "https://fakestoreapi.com";
       this.urlPrefix = "https://localhost:5001";
 
       this.get("/products", (schema) => {

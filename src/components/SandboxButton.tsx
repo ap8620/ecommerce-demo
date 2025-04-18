@@ -9,7 +9,7 @@ import {
     Link,
     useDisclosure,
   } from "@chakra-ui/react";
-import { makeServer } from "../mirage/server";
+import { makeServer } from "../mirage/server_basic";
 
 const SandboxButton = ()=> {
   //const [isMirageOn, setIsMirageOn] = useState(false);

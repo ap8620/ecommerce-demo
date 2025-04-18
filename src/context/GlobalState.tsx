@@ -187,8 +187,9 @@ export const Provider: FC<Props> = ({ children }) => {
       }
 
       const updatedProductData = await response.json();
+      console.log('updatedProductData', updatedProductData);
       setProducts(products.map(product => 
-        product.id === id ? { ...product, ...updatedProductData } : product
+        product.id === id ? { ...updatedProductData } : product
       ));
 
       toast({

@@ -20,7 +20,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { AddIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useGlobalContext } from "../context/useGlobalContext";
 import ProductFormModal from "../components/ProductFormModal";
 import { Product } from "../types/types";
@@ -32,6 +32,11 @@ const Inventory = () => {
   const { isOpen: isFormOpen, onOpen: onFormOpen, onClose: onFormClose } = useDisclosure();
   const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure();
   const cancelRef = useRef(null);
+
+  useEffect(() => {
+    console.log('products changed, triggering rerender in Inventory');
+    console.log('products', products);
+  }, [products]);
 
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
