@@ -42,18 +42,13 @@ export const Provider: FC<Props> = ({ children }) => {
     let data = [];
     res.json().then(x => {
       data = x;
-      console.log('anish fetching from fakestore api', data);
-      //console.log('anish fetching from fakestore api', data);
       const products: ProductType[] = data;
-      console.log('anish globalstate setting products data 67', products);
       setProducts(products);
       setIsLoading(false);
     });
   };
   useEffect(() => {
-    console.log('anish inside globalstate.tsx');
     fetchProducts();
-    console.log('anish inside globalstate.tsx useeffect after fetchproducts 74');
   }, []);
 
   useEffect(() => {
@@ -161,7 +156,6 @@ export const Provider: FC<Props> = ({ children }) => {
         isClosable: true,
       });
     } catch (error) {
-      console.log('error creating product', error);
       toast({
         title: "Error creating product",
         description: error instanceof Error ? error.message : "Unknown error occurred",
@@ -187,7 +181,6 @@ export const Provider: FC<Props> = ({ children }) => {
       }
 
       const updatedProductData = await response.json();
-      console.log('updatedProductData', updatedProductData);
       setProducts(products.map(product => 
         product.id === id ? { ...updatedProductData } : product
       ));
@@ -199,7 +192,6 @@ export const Provider: FC<Props> = ({ children }) => {
         isClosable: true,
       });
     } catch (error) {
-      console.log('error updating product', error);
       toast({
         title: "Error updating product",
         description: error instanceof Error ? error.message : "Unknown error occurred",

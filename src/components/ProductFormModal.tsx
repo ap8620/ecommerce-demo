@@ -36,7 +36,6 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
 
   useEffect(() => {
     if (product) {
-      console.log('inside modal product', product);
       setFormData({
         title: product.title,
         category: product.category,
@@ -103,31 +102,11 @@ const ProductFormModal = ({ isOpen, onClose, product }: ProductFormModalProps) =
           </FormControl>
           <FormControl mb={3}>
             <FormLabel>Price</FormLabel>
-            {/* <NumberInput>
-              <NumberInputField
-                defaultValue={formData.price}
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  setFormData({ ...formData, price: parseFloat(e.target.value)})
-                  console.log(formData);
-                  }
-                }
-              />
-            </NumberInput> */}
             <Input
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             />
           </FormControl>
-          {/* <FormControl mb={3}>
-            <FormLabel>Stock</FormLabel>
-            <NumberInput>
-              <NumberInputField
-                value={formData.stock}
-                onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-              />
-            </NumberInput>
-          </FormControl> */}
           <FormControl mb={3}>
             <FormLabel>Image URL</FormLabel>
             <Input

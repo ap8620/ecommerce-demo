@@ -1,12 +1,6 @@
 /* eslint-disable no-console */
-// src/server.js
 import { createServer, Model, Response, RestSerializer } from "miragejs";
 import products from "./seedData/candy_products.json";
-// import { uniq } from "ramda";
-// import tags from "./seedData/tags.json";
-
-
-console.log('seedData');
 
 export function makeServer({ environment = "test" } = {}) {
   let server = createServer({
@@ -18,9 +12,7 @@ export function makeServer({ environment = "test" } = {}) {
 
     seeds(server) {
       const sandboxData = localStorage.getItem('sandboxData');
-      console.log('anish sandBox data', sandboxData);
       if (!sandboxData) {
-        console.log('anish creating sandboxData');
         // If no sandbox data in localStorage, load the initial seed data
         const seedData = {
           products: products,
@@ -38,21 +30,15 @@ export function makeServer({ environment = "test" } = {}) {
     },
 
     routes() {
-    //   this.namespace = "api";
-      // this.urlPrefix = "https://fakestoreapi.com";
       this.urlPrefix = "https://localhost:5001";
 
       this.get("/products", (schema) => {
-      console.log('first product', schema.products.first());
       return schema.products.all().models;
       });
 
       this.post("/products", (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const product = schema.products.create(attrs);
-        console.log('anish mirage product 64', product);
-        console.log('anish mirage schema products', schema.products.all().models);
-        console.log('anish mirage db products', server.db.products);
         localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         // GOTCHA: return .attrs to return only the attributes and not have product as a key in the response
         return product.attrs;
@@ -71,8 +57,6 @@ export function makeServer({ environment = "test" } = {}) {
 
         // Update the product with new attributes
         product.update(attrs);
-
-        console.log('anish mirage updated product', product);
         localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         // GOTCHA: return .attrs to return only the attributes and not have product as a key in the response
         return product.attrs;
@@ -90,15 +74,11 @@ export function makeServer({ environment = "test" } = {}) {
 
         // Destroy the product
         product.destroy();
-
-        console.log('anish mirage deleted product', id);
         localStorage.setItem('sandboxData', JSON.stringify({products: server.db.products}));
         return new Response(204);
       });
     },
   })
-
-  console.log('mirage db', server.db);
 
   return server;
 }

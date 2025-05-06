@@ -17,7 +17,7 @@ const Home = () => {
         <Tag 
           size="lg" 
           variant="outline" 
-          colorScheme="blue" 
+          colorScheme="yellow" 
           cursor="pointer"
           onClick={() => navigate("/inventory")}
         >

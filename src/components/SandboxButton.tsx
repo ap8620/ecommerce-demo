@@ -9,7 +9,7 @@ import {
     Link,
     useDisclosure,
   } from "@chakra-ui/react";
-import { makeServer } from "../mirage/server_basic";
+import { makeServer } from "../mirage/server";
 
 const SandboxButton = ()=> {
   //const [isMirageOn, setIsMirageOn] = useState(false);
@@ -32,6 +32,7 @@ const SandboxButton = ()=> {
 
   return (
     <Button
+        backgroundColor="yellow"
         height={{ base: 8, sm: 9 }}
         minW={{ base: 8, sm: 9 }}
         fontSize={{ base: "sm", sm: "md" }}

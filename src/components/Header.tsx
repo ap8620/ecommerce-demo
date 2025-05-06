@@ -29,7 +29,6 @@ const Header = () => {
 
   const isSandboxMode = localStorage.getItem('isSandboxMode') ?? 'false'
   
-  console.log('anish header isSandboxMode', isSandboxMode);
   return (
     <Flex
       as="header"
